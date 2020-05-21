@@ -1,21 +1,54 @@
 <section class="TodoSection">
     <div class="TodoSectionTitle">
         <p class="TodoSectionTitle-text"><%= section_title %></p>
-        <label class="TodoSectionTitle-remaininCount"><%= todos.completed.count %> / <%= todos.count %></label>
+            <label class="TodoSectionTitle-remaininCount"><%= todos.completed.count %> / <%= todos.count %></label>
     </div>
     <ul>
         <% todos.each do |todo| %>
             <li class="TodoItem">
                 <div class="TodoItem-container">
-                    <input class="TodoItem-checkbox" type="checkbox" />
-                    <%= todo.todo_text %>
-
-                    <% if show_due_date %>
-                        <label class="TodoItem-dueDate"><%= todo.due_date.to_s(:short) %></label>
+                    <% if is_completed %>
+                        <% if todo.completed %>
+                            <input class="TodoItem-checkbox" type="checkbox" checked />
+                        <% else %>
+                            <input class="TodoItem-checkbox" type="checkbox" />
+                        <% end %>
+                    <% else %>
+                        <% if !todo.completed%>
+                            <input class="TodoItem-checkbox" type="checkbox" />
+                        <% end %>
                     <% end %>
-                    <a class="TodoItem-delete" href="javascript:void(0)">
-                    <img src="trash-can-outline.png" height="20" />
-                    </a>
+                    <% if is_completed %>
+                        <% if todo.completed %>
+                            <label style="text-decoration:line-through"><%= todo.todo_text %></label>
+                        <% else %>
+                            <label><%= todo.todo_text %></label>
+                        <% end %>
+                    <% else %>
+                        <% if !todo.completed%>
+                            <label><%= todo.todo_text %></label> 
+                        <% end %>
+                    <% end %>
+                    <% if is_completed%>
+                        <% if show_due_date %>
+                            <label class="TodoItem-dueDate"><%= todo.due_date.to_s(:short) %></label>
+                        <% end %>
+                    <% else %>
+                        <% if !todo.completed%>
+                            <label class="TodoItem-dueDate"><%= todo.due_date.to_s(:short) %></label>
+                        <% end %>
+                    <% end %>
+                    <% if is_completed %>
+                        <a class="TodoItem-delete" href="javascript:void(0)">
+                        <img src="trash-can-outline.png" height="20" />
+                        </a>
+                    <% else %>
+                        <% if !todo.completed %>
+                            <a class="TodoItem-delete" href="javascript:void(0)">
+                            <img src="trash-can-outline.png" height="20" />
+                            </a>
+                        <% end %>
+                    <% end %>
                 </div>
             </li>
         <% end %>

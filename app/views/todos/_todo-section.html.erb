@@ -40,7 +40,9 @@
                     <% end %>
                     <% if is_completed %>
                         <a class="TodoItem-delete" href="javascript:void(0)">
-                        <img src="trash-can-outline.png" height="20" />
+                            <%= form_with(url: "/todos/#{todo.id}", method: "delete") do %>
+                                <input type="image" src="trash-can-outline.png" height="20" />
+                            <% end %>
                         </a>
                     <% else %>
                         <% if !todo.completed %>

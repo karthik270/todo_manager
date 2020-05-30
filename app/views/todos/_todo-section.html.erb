@@ -10,17 +10,17 @@
                     <% if is_completed %>
                         <% if todo.completed %>
                             <%= form_with(url: "/todos/#{todo.id}", method: "put") do %>
-                                <%= text_field_tag 'completed', nil, class: 'TodoItem-checkbox', type: 'checkbox', checked: 'false', onclick: 'this.form.submit()' %>
+                                <%= text_field_tag "completed", nil, class: "TodoItem-checkbox", type: "checkbox", checked: "false", onclick: "this.form.submit()" %>
                             <% end %>
                         <% else %>
                             <%= form_with(url: "/todos/#{todo.id}", method: "put") do %>
-                                <%= text_field_tag 'completed', nil, class: 'TodoItem-checkbox', type: 'checkbox', onclick: 'this.form.submit()' %>
+                                <%= text_field_tag "completed", nil, class: "TodoItem-checkbox", type: "checkbox", onclick: "this.form.submit()" %>
                             <% end %>
                         <% end %>
                     <% else %>
-                        <% if !todo.completed%>
+                        <% if !todo.completed %>
                             <%= form_with(url: "/todos/#{todo.id}", method: "put") do %>
-                               <%= text_field_tag 'completed', nil, class: 'TodoItem-checkbox', type: 'checkbox', onclick: 'this.form.submit()' %>                         
+                               <%= text_field_tag "completed", nil, class: "TodoItem-checkbox", type: "checkbox", onclick: "this.form.submit()" %>                         
                             <% end %>
                         <% end %>
                     <% end %>
@@ -31,30 +31,30 @@
                             <label><%= todo.todo_text %></label>
                         <% end %>
                     <% else %>
-                        <% if !todo.completed%>
+                        <% if !todo.completed %>
                             <label><%= todo.todo_text %></label> 
                         <% end %>
                     <% end %>
-                    <% if is_completed%>
+                    <% if is_completed %>
                         <% if show_due_date %>
                             <label class="TodoItem-dueDate"><%= todo.due_date.to_s(:short) %></label>
                         <% end %>
                     <% else %>
-                        <% if !todo.completed%>
+                        <% if !todo.completed %>
                             <label class="TodoItem-dueDate"><%= todo.due_date.to_s(:short) %></label>
                         <% end %>
                     <% end %>
                     <% if is_completed %>
                         <a class="TodoItem-delete" href="javascript:void(0)">
                             <%= form_with(url: "/todos/#{todo.id}", method: "delete") do %>
-                                <%= text_field_tag 'image', nil, type: "image", src: "trash-can-outline.png", height: "20" %>
+                                <%= text_field_tag "image", nil, type: "image", src: "trash-can-outline.png", height: "20" %>
                             <% end %>
                         </a>
                     <% else %>
                         <% if !todo.completed %>
                             <a class="TodoItem-delete" href="javascript:void(0)">
                                 <%= form_with(url: "/todos/#{todo.id}", method: "delete") do %>
-                                    <%= text_field_tag 'image', nil, type: "image", src: "trash-can-outline.png", height: "20" %>
+                                    <%= text_field_tag "image", nil, type: "image", src: "trash-can-outline.png", height: "20" %>
                                 <% end %>        
                             </a>
                         <% end %>

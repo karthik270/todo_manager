@@ -20,7 +20,7 @@
                     <% else %>
                         <% if !todo.completed%>
                             <%= form_with(url: "/todos/#{todo.id}", method: "put") do %>
-                           `    <%= text_field_tag 'completed', nil, class: 'TodoItem-checkbox', type: 'checkbox', onclick: 'this.form.submit()' %>                         
+                               <%= text_field_tag 'completed', nil, class: 'TodoItem-checkbox', type: 'checkbox', onclick: 'this.form.submit()' %>                         
                             <% end %>
                         <% end %>
                     <% end %>

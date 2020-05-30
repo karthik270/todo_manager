@@ -6,16 +6,22 @@
     <ul>
         <% todos.each do |todo| %>
             <li class="TodoItem">
-                <div class="TodoItem-container">
+                <label class="TodoItem-container">
                     <% if is_completed %>
                         <% if todo.completed %>
-                            <input class="TodoItem-checkbox" type="checkbox" checked />
+                            <%= form_with(url: "/todos/#{todo.id}", method: "put") do %>
+                                <input class="TodoItem-checkbox" name="completed" type="checkbox"  <%= todo.completed ? "checked" : "" %> onclick="this.form.submit()" />
+                            <% end %>
                         <% else %>
-                            <input class="TodoItem-checkbox" type="checkbox" />
+                            <%= form_with(url: "/todos/#{todo.id}", method: "put") do %>
+                                <input class="TodoItem-checkbox" name="completed" type="checkbox"  <%= todo.completed ? "checked" : "" %> onclick="this.form.submit()" />
+                            <% end %>
                         <% end %>
                     <% else %>
                         <% if !todo.completed%>
-                            <input class="TodoItem-checkbox" type="checkbox" />
+                            <%= form_with(url: "/todos/#{todo.id}", method: "put") do %>
+                                <input class="TodoItem-checkbox" name="completed" type="checkbox"  <%= todo.completed ? "checked" : "" %> onclick="this.form.submit()" />
+                            <% end %>
                         <% end %>
                     <% end %>
                     <% if is_completed %>
@@ -47,11 +53,13 @@
                     <% else %>
                         <% if !todo.completed %>
                             <a class="TodoItem-delete" href="javascript:void(0)">
-                            <img src="trash-can-outline.png" height="20" />
+                                <%= form_with(url: "/todos/#{todo.id}", method: "delete") do %>
+                                    <input type="image" src="trash-can-outline.png" height="20" />
+                                <% end %>        
                             </a>
                         <% end %>
                     <% end %>
-                </div>
+                </label>
             </li>
         <% end %>
     </ul>
